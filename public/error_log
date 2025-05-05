@@ -1,0 +1,130 @@
+[26-Feb-2025 14:25:34 America/New_York] PHP Fatal error:  Cannot redeclare class App\Http\Controllers\Community\StaffController (previously declared in /home/chunk082/public_html/app/Http/Controllers/Community/TheWayController.php:10) in /home/chunk082/public_html/app/Http/Controllers/Community/TheWayController.php on line 10
+[06-Mar-2025 16:33:59 America/New_York] PHP Fatal error:  Cannot redeclare class App\Http\Middleware\Housekeeping\HousekeepingNotifications (previously declared in /home/chunk082/public_html/app/Http/Middleware/Housekeeping/HousekeepingNotification.php:10) in /home/chunk082/public_html/app/Http/Middleware/Housekeeping/HousekeepingNotification.php on line 10
+[10-Mar-2025 13:02:59 America/New_York] PHP Fatal error:  Trait "App\Http\Controllers\Housekeeping\Admin\Illuminate\Support\Facades\DB" not found in /home/chunk082/public_html/app/Http/Controllers/Housekeeping/Admin/ClientWhitelistController.php on line 9
+[10-Mar-2025 19:24:35 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Illuminate\Foundation\Configuration\Middleware::global() in /home/chunk082/public_html/bootstrap/app.php:28
+Stack trace:
+#0 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Configuration/ApplicationBuilder.php(279): {closure:/home/chunk082/public_html/bootstrap/app.php:14}(Object(Illuminate\Foundation\Configuration\Middleware))
+#1 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1417): Illuminate\Foundation\Configuration\ApplicationBuilder->{closure:Illuminate\Foundation\Configuration\ApplicationBuilder::withMiddleware():274}(Object(Illuminate\Foundation\Http\Kernel), Object(Illuminate\Foundation\Application))
+#2 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1353): Illuminate\Container\Container->fireCallbackArray(Object(Illuminate\Foundation\Http\Kernel), Array)
+#3 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1339): Illuminate\Container\Container->fireAfterResolvingCallbacks('Illuminate\\Cont...', Object(Illuminate\Foundation\Http\Kernel))
+#4 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(837): Illuminate\Container\Container->fireResolvingCallbacks('Illuminate\\Cont...', Object(Illuminate\Foundation\Http\Kernel))
+#5 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1048): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#6 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(755): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#7 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1030): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#8 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#9 /home/chunk082/public_html/public/index.php(17): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#10 {main}
+  thrown in /home/chunk082/public_html/bootstrap/app.php on line 28
+[10-Mar-2025 19:24:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Illuminate\Foundation\Configuration\Middleware::global() in /home/chunk082/public_html/bootstrap/app.php:28
+Stack trace:
+#0 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Configuration/ApplicationBuilder.php(279): {closure:/home/chunk082/public_html/bootstrap/app.php:14}(Object(Illuminate\Foundation\Configuration\Middleware))
+#1 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1417): Illuminate\Foundation\Configuration\ApplicationBuilder->{closure:Illuminate\Foundation\Configuration\ApplicationBuilder::withMiddleware():274}(Object(Illuminate\Foundation\Http\Kernel), Object(Illuminate\Foundation\Application))
+#2 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1353): Illuminate\Container\Container->fireCallbackArray(Object(Illuminate\Foundation\Http\Kernel), Array)
+#3 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1339): Illuminate\Container\Container->fireAfterResolvingCallbacks('Illuminate\\Cont...', Object(Illuminate\Foundation\Http\Kernel))
+#4 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(837): Illuminate\Container\Container->fireResolvingCallbacks('Illuminate\\Cont...', Object(Illuminate\Foundation\Http\Kernel))
+#5 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1048): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#6 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(755): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#7 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1030): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#8 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#9 /home/chunk082/public_html/public/index.php(17): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#10 {main}
+  thrown in /home/chunk082/public_html/bootstrap/app.php on line 28
+[10-Mar-2025 19:25:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Illuminate\Foundation\Configuration\Middleware::global() in /home/chunk082/public_html/bootstrap/app.php:30
+Stack trace:
+#0 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Configuration/ApplicationBuilder.php(279): {closure:/home/chunk082/public_html/bootstrap/app.php:14}(Object(Illuminate\Foundation\Configuration\Middleware))
+#1 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1417): Illuminate\Foundation\Configuration\ApplicationBuilder->{closure:Illuminate\Foundation\Configuration\ApplicationBuilder::withMiddleware():274}(Object(Illuminate\Foundation\Http\Kernel), Object(Illuminate\Foundation\Application))
+#2 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1353): Illuminate\Container\Container->fireCallbackArray(Object(Illuminate\Foundation\Http\Kernel), Array)
+#3 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1339): Illuminate\Container\Container->fireAfterResolvingCallbacks('Illuminate\\Cont...', Object(Illuminate\Foundation\Http\Kernel))
+#4 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(837): Illuminate\Container\Container->fireResolvingCallbacks('Illuminate\\Cont...', Object(Illuminate\Foundation\Http\Kernel))
+#5 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1048): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#6 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(755): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#7 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1030): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#8 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#9 /home/chunk082/public_html/public/index.php(17): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#10 {main}
+  thrown in /home/chunk082/public_html/bootstrap/app.php on line 30
+[10-Mar-2025 19:25:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Illuminate\Foundation\Configuration\Middleware::global() in /home/chunk082/public_html/bootstrap/app.php:30
+Stack trace:
+#0 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Configuration/ApplicationBuilder.php(279): {closure:/home/chunk082/public_html/bootstrap/app.php:14}(Object(Illuminate\Foundation\Configuration\Middleware))
+#1 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1417): Illuminate\Foundation\Configuration\ApplicationBuilder->{closure:Illuminate\Foundation\Configuration\ApplicationBuilder::withMiddleware():274}(Object(Illuminate\Foundation\Http\Kernel), Object(Illuminate\Foundation\Application))
+#2 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1353): Illuminate\Container\Container->fireCallbackArray(Object(Illuminate\Foundation\Http\Kernel), Array)
+#3 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1339): Illuminate\Container\Container->fireAfterResolvingCallbacks('Illuminate\\Cont...', Object(Illuminate\Foundation\Http\Kernel))
+#4 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(837): Illuminate\Container\Container->fireResolvingCallbacks('Illuminate\\Cont...', Object(Illuminate\Foundation\Http\Kernel))
+#5 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1048): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#6 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(755): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#7 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1030): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#8 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#9 /home/chunk082/public_html/public/index.php(17): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#10 {main}
+  thrown in /home/chunk082/public_html/bootstrap/app.php on line 30
+[10-Mar-2025 19:25:41 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Illuminate\Foundation\Configuration\Middleware::global() in /home/chunk082/public_html/bootstrap/app.php:30
+Stack trace:
+#0 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Configuration/ApplicationBuilder.php(279): {closure:/home/chunk082/public_html/bootstrap/app.php:14}(Object(Illuminate\Foundation\Configuration\Middleware))
+#1 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1417): Illuminate\Foundation\Configuration\ApplicationBuilder->{closure:Illuminate\Foundation\Configuration\ApplicationBuilder::withMiddleware():274}(Object(Illuminate\Foundation\Http\Kernel), Object(Illuminate\Foundation\Application))
+#2 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1353): Illuminate\Container\Container->fireCallbackArray(Object(Illuminate\Foundation\Http\Kernel), Array)
+#3 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1339): Illuminate\Container\Container->fireAfterResolvingCallbacks('Illuminate\\Cont...', Object(Illuminate\Foundation\Http\Kernel))
+#4 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(837): Illuminate\Container\Container->fireResolvingCallbacks('Illuminate\\Cont...', Object(Illuminate\Foundation\Http\Kernel))
+#5 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1048): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#6 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(755): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#7 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1030): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#8 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#9 /home/chunk082/public_html/public/index.php(17): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#10 {main}
+  thrown in /home/chunk082/public_html/bootstrap/app.php on line 30
+[10-Mar-2025 19:25:48 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Illuminate\Foundation\Configuration\Middleware::global() in /home/chunk082/public_html/bootstrap/app.php:30
+Stack trace:
+#0 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Configuration/ApplicationBuilder.php(279): {closure:/home/chunk082/public_html/bootstrap/app.php:14}(Object(Illuminate\Foundation\Configuration\Middleware))
+#1 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1417): Illuminate\Foundation\Configuration\ApplicationBuilder->{closure:Illuminate\Foundation\Configuration\ApplicationBuilder::withMiddleware():274}(Object(Illuminate\Foundation\Http\Kernel), Object(Illuminate\Foundation\Application))
+#2 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1353): Illuminate\Container\Container->fireCallbackArray(Object(Illuminate\Foundation\Http\Kernel), Array)
+#3 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1339): Illuminate\Container\Container->fireAfterResolvingCallbacks('Illuminate\\Cont...', Object(Illuminate\Foundation\Http\Kernel))
+#4 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(837): Illuminate\Container\Container->fireResolvingCallbacks('Illuminate\\Cont...', Object(Illuminate\Foundation\Http\Kernel))
+#5 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1048): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#6 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(755): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#7 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1030): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#8 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#9 /home/chunk082/public_html/public/index.php(17): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#10 {main}
+  thrown in /home/chunk082/public_html/bootstrap/app.php on line 30
+[10-Mar-2025 19:28:12 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Illuminate\Foundation\Configuration\Middleware::global() in /home/chunk082/public_html/bootstrap/app.php:30
+Stack trace:
+#0 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Configuration/ApplicationBuilder.php(279): {closure:/home/chunk082/public_html/bootstrap/app.php:14}(Object(Illuminate\Foundation\Configuration\Middleware))
+#1 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1417): Illuminate\Foundation\Configuration\ApplicationBuilder->{closure:Illuminate\Foundation\Configuration\ApplicationBuilder::withMiddleware():274}(Object(Illuminate\Foundation\Http\Kernel), Object(Illuminate\Foundation\Application))
+#2 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1353): Illuminate\Container\Container->fireCallbackArray(Object(Illuminate\Foundation\Http\Kernel), Array)
+#3 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1339): Illuminate\Container\Container->fireAfterResolvingCallbacks('Illuminate\\Cont...', Object(Illuminate\Foundation\Http\Kernel))
+#4 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(837): Illuminate\Container\Container->fireResolvingCallbacks('Illuminate\\Cont...', Object(Illuminate\Foundation\Http\Kernel))
+#5 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1048): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#6 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(755): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#7 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1030): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#8 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#9 /home/chunk082/public_html/public/index.php(17): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#10 {main}
+  thrown in /home/chunk082/public_html/bootstrap/app.php on line 30
+[10-Mar-2025 19:40:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Illuminate\Foundation\Configuration\Middleware::global() in /home/chunk082/public_html/bootstrap/app.php:29
+Stack trace:
+#0 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Configuration/ApplicationBuilder.php(279): {closure:/home/chunk082/public_html/bootstrap/app.php:14}(Object(Illuminate\Foundation\Configuration\Middleware))
+#1 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1417): Illuminate\Foundation\Configuration\ApplicationBuilder->{closure:Illuminate\Foundation\Configuration\ApplicationBuilder::withMiddleware():274}(Object(Illuminate\Foundation\Http\Kernel), Object(Illuminate\Foundation\Application))
+#2 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1353): Illuminate\Container\Container->fireCallbackArray(Object(Illuminate\Foundation\Http\Kernel), Array)
+#3 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1339): Illuminate\Container\Container->fireAfterResolvingCallbacks('Illuminate\\Cont...', Object(Illuminate\Foundation\Http\Kernel))
+#4 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(837): Illuminate\Container\Container->fireResolvingCallbacks('Illuminate\\Cont...', Object(Illuminate\Foundation\Http\Kernel))
+#5 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1048): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#6 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(755): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#7 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1030): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#8 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#9 /home/chunk082/public_html/public/index.php(17): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#10 {main}
+  thrown in /home/chunk082/public_html/bootstrap/app.php on line 29
+[10-Mar-2025 19:40:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Illuminate\Foundation\Configuration\Middleware::global() in /home/chunk082/public_html/bootstrap/app.php:29
+Stack trace:
+#0 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Configuration/ApplicationBuilder.php(279): {closure:/home/chunk082/public_html/bootstrap/app.php:14}(Object(Illuminate\Foundation\Configuration\Middleware))
+#1 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1417): Illuminate\Foundation\Configuration\ApplicationBuilder->{closure:Illuminate\Foundation\Configuration\ApplicationBuilder::withMiddleware():274}(Object(Illuminate\Foundation\Http\Kernel), Object(Illuminate\Foundation\Application))
+#2 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1353): Illuminate\Container\Container->fireCallbackArray(Object(Illuminate\Foundation\Http\Kernel), Array)
+#3 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(1339): Illuminate\Container\Container->fireAfterResolvingCallbacks('Illuminate\\Cont...', Object(Illuminate\Foundation\Http\Kernel))
+#4 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(837): Illuminate\Container\Container->fireResolvingCallbacks('Illuminate\\Cont...', Object(Illuminate\Foundation\Http\Kernel))
+#5 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1048): Illuminate\Container\Container->resolve('Illuminate\\Cont...', Array, true)
+#6 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(755): Illuminate\Foundation\Application->resolve('Illuminate\\Cont...', Array)
+#7 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1030): Illuminate\Container\Container->make('Illuminate\\Cont...', Array)
+#8 /home/chunk082/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1188): Illuminate\Foundation\Application->make('Illuminate\\Cont...')
+#9 /home/chunk082/public_html/public/index.php(17): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#10 {main}
+  thrown in /home/chunk082/public_html/bootstrap/app.php on line 29
+[10-Mar-2025 15:49:09 America/New_York] PHP Fatal error:  Cannot redeclare class App\Http\Middleware\BlockBlacklistedIP (previously declared in /home/chunk082/public_html/app/Http/Middleware/Blacklisted.php:10) in /home/chunk082/public_html/app/Http/Middleware/Blacklisted.php on line 10
