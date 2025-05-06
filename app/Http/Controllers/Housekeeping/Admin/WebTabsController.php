@@ -10,38 +10,38 @@ class WebTabsController extends Controller
 {
     public function index()
     {
-        // Retrieve settings
-        $staffApplicationTabVisible = WebsiteSetting::isStaffApplicationTabVisible();
-        $trialModeratorView = WebsiteSetting::isTrialModView();
-
-        return view('housekeeping.admin.webtabs', compact('staffApplicationTabVisible', 'trialModeratorView'));
+        return view('housekeeping.admin.webtabs', [
+            'staffApplicationTabVisible' => WebsiteSetting::isStaffApplicationTabVisible(),
+            'trialModeratorView' => WebsiteSetting::isTrialModView()
+        ]);
     }
 
     public function updateWebTabs(Request $request)
     {
         $messages = [];
 
-        // Handle Staff Application Tab Visibility
-        $staffApplicationTabVisible = $request->input('staff_application_tab_visible');
-        if (WebsiteSetting::isStaffApplicationTabVisible() != $staffApplicationTabVisible) {
-            WebsiteSetting::updateStaffApplicationTab($staffApplicationTabVisible);
-            $messages[] = $staffApplicationTabVisible == 'true' ? 'You have enabled Staff Applications!' : 'You have disabled Staff Applications!';
-            logHousekeepingActivity("User: " . auth()->user()->username . " has " . ($staffApplicationTabVisible == 'true' ? 'enabled' : 'disabled') . " Staff Application Tab.");
+        // Handle Staff Application Tab toggle
+        $staffTab = $request->input('staff_application_tab_visible') === 'true' ? 'true' : 'false';
+        if (WebsiteSetting::isStaffApplicationTabVisible() != ($staffTab === 'true')) {
+            WebsiteSetting::updateStaffApplicationTab($staffTab);
+            $messages[] = $staffTab === 'true'
+                ? 'You have enabled the Staff Applications tab.'
+                : 'You have disabled the Staff Applications tab.';
+            logHousekeepingActivity("User: " . auth()->user()->username . " has " . ($staffTab === 'true' ? 'enabled' : 'disabled') . " the Staff Applications tab.");
         }
 
-        // Handles the Trial Mod Section on the Staff Page
-        $trialModView = $request->input('trial_moderator_view');
-            if (WebsiteSetting::isTrialModView() != $trialModView) {
-            WebsiteSetting::updateTrialModView($trialModView);
-            $messages[] = $trialModView == 'true' ? 'You have enabled Trial Moderator section!' : 'You have disabled Trial Moderator section!';
-            logHousekeepingActivity("User: " . auth()->user()->username . " has " . ($trialModView == 'true' ? 'enabled' : 'disabled') . " Trial Moderator view.");
+        // Handle Trial Moderator View toggle
+        $trialMod = $request->input('trial_moderator_view') === 'true' ? 'true' : 'false';
+        if (WebsiteSetting::isTrialModView() != ($trialMod === 'true')) {
+            WebsiteSetting::updateTrialModView($trialMod);
+            $messages[] = $trialMod === 'true'
+                ? 'You have enabled Trial Moderator View.'
+                : 'You have disabled Trial Moderator View.';
+            logHousekeepingActivity("User: " . auth()->user()->username . " has " . ($trialMod === 'true' ? 'enabled' : 'disabled') . " Trial Moderator View.");
         }
 
-        // Combine the messages into a single string
-        $successMessage = implode(' ', $messages);
-
-        return redirect()->route('housekeeping.admin.webtabs')->with('success', $successMessage);
+        return redirect()
+            ->route('housekeeping.admin.webtabs')
+            ->with('success', implode(' ', $messages));
     }
 }
-
-

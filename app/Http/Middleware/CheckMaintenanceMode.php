@@ -11,31 +11,28 @@ class CheckMaintenanceMode
 {
     public function handle(Request $request, Closure $next)
     {
-        // Retrieve the maintenance mode status from the database
-        $maintenanceMode = WebsiteSetting::first()->maintenance_mode;
+        // Use key/value accessor
+        $maintenanceMode = WebsiteSetting::isMaintenanceModeEnabled();
 
-        // If the current route is /maintenance
+        // Allow access to /maintenance if active
         if ($request->is('maintenance')) {
-            // Redirect to / if maintenance mode is disabled
-            if ($maintenanceMode === 'false') {
+            if (!$maintenanceMode) {
                 return redirect('/');
             }
 
-            // Allow access to the maintenance page
             return $next($request);
         }
 
-        // Allow access to housekeeping routes during maintenance mode
+        // Allow housekeeping routes regardless of mode
         if ($request->is('housekeeping') || $request->is('housekeeping/*')) {
             return $next($request);
         }
 
-        // Redirect non-staff users to /maintenance if maintenance mode is enabled
-        if ($maintenanceMode === 'true' && (!Auth::check() || !Auth::user()->isStaff())) {
+        // Redirect all other users if maintenance mode is enabled
+        if ($maintenanceMode && (!Auth::check() || !Auth::user()->isStaff())) {
             return redirect('/maintenance');
         }
 
-        // Proceed to the requested page
         return $next($request);
     }
 }

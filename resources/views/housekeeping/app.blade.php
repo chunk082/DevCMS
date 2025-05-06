@@ -327,10 +327,11 @@
 <li class="nav-item">
     <a href="#" class="nav-link d-flex justify-content-between align-items-center toggle-link">
         <span>Website Settings</span>
-        <i class="bi bi-caret-right toggle-caret {{ request()->routeIs('housekeeping.admin.maintenance') || request()->routeIs('housekeeping.admin.theme') || request()->routeIs('housekeeping.admin.webtabs') ? 'rotate' : '' }}"></i>
+        <i class="bi bi-caret-right toggle-caret {{ request()->routeIs('housekeeping.admin.maintenance') || request()->routeIs('housekeeping.admin.theme') || request()->routeIs('housekeeping.admin.webtabs') || request()->routeIs('housekeeping.admin.syncbadges') ? 'rotate' : '' }}"></i>
     </a>
-    <ul class="submenu {{ request()->routeIs('housekeeping.admin.maintenance') || request()->routeIs('housekeeping.admin.theme') || request()->routeIs('housekeeping.admin.webtabs') ? 'open' : '' }}">
+    <ul class="submenu {{ request()->routeIs('housekeeping.admin.maintenance') || request()->routeIs('housekeeping.admin.theme') || request()->routeIs('housekeeping.admin.webtabs') || request()->routeIs('housekeeping.admin.syncbadges')  ? 'open' : '' }}">
         <li><a href="{{ route('housekeeping.admin.maintenance') }}" class="nav-link {{ request()->routeIs('housekeeping.admin.maintenance') ? 'active' : '' }}">Maintenance Mode</a></li>
+        <li><a href="{{ route('housekeeping.admin.syncbadges') }}" class="nav-link {{ request()->routeIs('housekeeping.admin.syncbadges') ? 'active' : '' }}">Sync Badges</a></li>
         <li><a href="{{ route('housekeeping.admin.theme') }}" class="nav-link {{ request()->routeIs('housekeeping.admin.theme') ? 'active' : '' }}">Theme System</a></li>
         <li><a href="{{ route('housekeeping.admin.webtabs') }}" class="nav-link {{ request()->routeIs('housekeeping.admin.webtabs') ? 'active' : '' }}">Website Tabs</a></li>
     </ul>

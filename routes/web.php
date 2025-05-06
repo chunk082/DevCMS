@@ -74,6 +74,7 @@ use App\Http\Controllers\Client\NitroController;
 
 use App\Http\Controllers\Housekeeping\HousekeepingAuthController;
 use App\Http\Controllers\Housekeeping\DashboardController;
+
 use App\Http\Controllers\Housekeeping\Hotel\UsersController;
 use App\Http\Controllers\Housekeeping\Hotel\PermissionsController;
 use App\Http\Controllers\Housekeeping\Hotel\HotelAlertRCONController;
@@ -82,6 +83,7 @@ use App\Http\Controllers\Housekeeping\Hotel\PrivateChatlogsController;
 use App\Http\Controllers\Housekeeping\Hotel\BannedUsersController;
 use App\Http\Controllers\Housekeeping\Hotel\GiveBadgeController;
 use App\Http\Controllers\Housekeeping\Hotel\WordFilterController;
+
 use App\Http\Controllers\Housekeeping\Website\CameraWebController;
 use App\Http\Controllers\Housekeeping\Website\ManageArticlesController;
 use App\Http\Controllers\Housekeeping\Website\SiteSupportController;
@@ -90,6 +92,7 @@ use App\Http\Controllers\Housekeeping\Website\CreateArticlesController;
 use App\Http\Controllers\Housekeeping\Website\ArticleCommentsController;
 use App\Http\Controllers\Housekeeping\Website\BannersController;
 use App\Http\Controllers\Housekeeping\Website\HousekeepingSiteSettingsController;
+
 use App\Http\Controllers\Housekeeping\Admin\WebTabsController;
 use App\Http\Controllers\Housekeeping\Admin\HousekeepingActivityLogController;
 use App\Http\Controllers\Housekeeping\Admin\StaffApplicationsController;
@@ -98,9 +101,12 @@ use App\Http\Controllers\Housekeeping\Admin\VPNBlacklistController;
 use App\Http\Controllers\Housekeeping\Admin\ClientWhitelistController;
 use App\Http\Controllers\Housekeeping\Admin\VoucherController;
 use App\Http\Controllers\Housekeeping\Admin\ThemeController;
+use App\Http\Controllers\Housekeeping\Admin\SyncBadgesController;
+
 use App\Http\Controllers\Housekeeping\Catalogue\CatalogPagesController;
 use App\Http\Controllers\Housekeeping\Catalogue\CatalogItemsController;
 use App\Http\Controllers\Housekeeping\Catalogue\FurnitureController;
+
 use App\Http\Controllers\Housekeeping\Emulator\EmulatorSettingsController;
 use App\Http\Controllers\Housekeeping\Emulator\EmulatorTextsController;
 
@@ -398,6 +404,11 @@ Route::prefix('housekeeping')->group(function () {
 
         Route::get('/admin/webtabs', [WebTabsController::class, 'index'])->name('housekeeping.admin.webtabs');
         Route::post('/admin/webtabs', [WebTabsController::class, 'updateWebTabs'])->name('housekeeping.admin.webtabs.update');
+
+        Route::get('/admin/syncbadges', [SyncBadgesController::class, 'index'])->name('housekeeping.admin.syncbadges');
+        Route::post('/admin/syncbadges/run', [SyncBadgesController::class, 'runSyncHabboSync'])->name('housekeeping.admin.syncbadges.run');
+        Route::post('/admin/syncbadges/run', [SyncBadgesController::class, 'runSyncHabboonSync'])->name('housekeeping.admin.syncbadges.run');
+
 
 
         Route::resource('articles', CreateArticlesController::class)->names([

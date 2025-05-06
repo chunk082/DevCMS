@@ -6,129 +6,117 @@ use Illuminate\Database\Eloquent\Model;
 
 class WebsiteSetting extends Model
 {
-    // Define the table explicitly
     protected $table = 'website_settings';
 
-    // Disable incrementing ID since the table doesn't have one
+    // Use 'key' as primary, string type
+    protected $primaryKey = 'key';
     public $incrementing = false;
-
-    // Let Laravel know there's no primary key
-    protected $primaryKey = null;
-
-    // Disable timestamp columns since the table doesn't have `created_at` and `updated_at`
+    protected $keyType = 'string';
     public $timestamps = false;
 
-    // Add fillable properties
-    protected $fillable = ['staff_application_tab_visible', 'maintenance_mode', 'theme', 'trial_moderator_view'];
+    protected $fillable = ['key', 'value'];
 
     /**
-     * Check if the staff application tab is visible.
+     * Get a setting by key.
      */
-    public static function isStaffApplicationTabVisible()
+    public static function get(string $key, $default = null): ?string
     {
-        $setting = static::first();
-        return $setting ? $setting->staff_application_tab_visible : 'false'; // Default to 'false'
+        return static::where('key', $key)->value('value') ?? $default;
     }
 
     /**
-     * Update the visibility of the staff application tab.
+     * Set or update a setting.
      */
-    public static function updateStaffApplicationTab($value)
+    public static function set(string $key, $value): void
     {
-        $setting = static::first();
-        if ($setting) {
-            $setting->staff_application_tab_visible = $value;
-            $setting->save();
-        }
-    }
-
-     /**
-     * Check if the Trial Moderator view on Staff Page.
-     */
-
-    public static function isTrialModView()
-    {
-        $setting = static::first();
-        return $setting ? $setting->trial_moderator_view : 'false'; // Default to 'false'
-    }
-
-     /**
-     * Update the visibility of the trial mod section.
-     */
-    public static function updateTrialModView($value)
-    {
-        $setting = static::first();
-        if ($setting) {
-            $setting->trial_moderator_view = $value;
-            $setting->save();
-        }
+        static::updateOrInsert(
+            ['key' => $key],
+            ['value' => $value]
+        );
     }
 
     /**
      * Check if maintenance mode is enabled.
      */
-    public static function isMaintenanceModeEnabled()
+    public static function isMaintenanceModeEnabled(): bool
     {
-        $setting = static::first();
-        return $setting ? $setting->maintenance_mode : 'false'; // Default to 'false'
+        return static::get('maintenance_mode', 'false') === 'true';
     }
 
     /**
      * Update maintenance mode.
      */
-    public static function updateMaintenanceMode($value)
+    public static function updateMaintenanceMode(string $value): void
     {
-        $setting = static::first();
-        if ($setting) {
-            $setting->maintenance_mode = $value;
-            $setting->save();
-        }
+        static::set('maintenance_mode', $value);
+    }
+
+    /**
+     * Check if the staff application tab is visible.
+     */
+    public static function isStaffApplicationTabVisible(): bool
+    {
+        return static::get('staff_application_tab_visible', 'false') === 'true';
+    }
+
+    /**
+     * Update the visibility of the staff application tab.
+     */
+    public static function updateStaffApplicationTab(string $value): void
+    {
+        static::set('staff_application_tab_visible', $value);
+    }
+
+    /**
+     * Check if Trial Moderator view is visible.
+     */
+    public static function isTrialModView(): bool
+    {
+        return static::get('trial_moderator_view', 'false') === 'true';
+    }
+
+    /**
+     * Update Trial Moderator view setting.
+     */
+    public static function updateTrialModView(string $value): void
+    {
+        static::set('trial_moderator_view', $value);
     }
 
     /**
      * Get the current theme.
      */
-    public static function getTheme()
+    public static function getTheme(): string
     {
-        $setting = static::first();
-        return $setting ? $setting->theme : 'default'; // default.css is the default theme
+        return static::get('theme', 'default');
     }
 
     /**
-     * Set the theme.
+     * Update the current theme.
      */
-    public static function setTheme($theme)
+    public static function setTheme(string $theme): void
     {
-        $setting = static::first();
-        if ($setting) {
-            $setting->theme = $theme;
-            $setting->save();
-        }
+        static::set('theme', $theme);
     }
 
     /**
-     * Trigger NPM build for theme updates.
+     * Optional: Trigger NPM build for the selected theme.
      */
-    
-    public static function buildTheme($theme)
-{
+    public static function buildTheme(string $theme): bool
+    {
+        $theme = strtolower($theme);
 
-    $theme = strtolower($theme);
+        // Adjust these if npm/node is installed elsewhere
+        $nodePath = '/usr/bin/node';
+        $npmPath = '/usr/bin/npm';
 
-    // Full path to npm and node 
-    $nodePath = '/usr/bin/node';
-    $npmPath = '/usr/bin/npm'; // Update with the output of `which npm`
+        $command = "PATH=/usr/local/bin:/usr/bin:/bin THEME={$theme} {$npmPath} run production 2>&1";
 
-    // Export PATH and run the build
-    $command = "PATH=/usr/local/bin:/usr/bin:/bin THEME={$theme} {$npmPath} run production 2>&1";
+        exec($command, $output, $returnVar);
 
-    exec($command, $output, $returnVar);
+        logger()->info('Theme Build Output: ', $output);
+        logger()->info('Theme Build Exit Code: ' . $returnVar);
 
-    // Log the output and exit code for debugging
-    logger()->info('Theme Build Output: ', $output);
-    logger()->info('Theme Build Exit Code: ' . $returnVar);
-
-    return $returnVar === 0; // Return true if the build succeeds
-}
-
+        return $returnVar === 0;
+    }
 }

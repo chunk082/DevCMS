@@ -8,17 +8,23 @@ use Illuminate\Support\Facades\Http;
 
 class SyncHabboBadges extends Command
 {
-    protected $signature = 'habbo:sync-badges {--hotel=com} {--limit=100} {--offset=0}';
-    protected $description = 'Sync badges from HabboAssets API and store them in badge_definitions + save images';
+    protected $signature = 'habbo:sync-badges {--hotel=com} {--limit=2000} {--offset=0} {--format=gif}';
+    protected $description = 'Sync badges from HabboAssets API and store them in badge_definitions + save badge images';
 
     public function handle()
     {
         $hotel = $this->option('hotel');
         $limit = $this->option('limit');
         $offset = $this->option('offset');
+        $format = strtolower($this->option('format'));
 
-        $apiUrl = "https://www.habboassets.com/api/v1/badges?hotel=$hotel&limit=$limit&offset=$offset";
-        $this->info("Fetching badge data from: $apiUrl");
+        if (!in_array($format, ['gif', 'png'])) {
+            $this->error("❌ Invalid format. Use --format=gif or --format=png");
+            return;
+        }
+
+        $apiUrl = "https://www.habboassets.com/api/v1/badges?term=staff&hotel=com&limit=2000&order=asc&offset=10";
+        $this->info("🔄 Fetching badge data from: $apiUrl");
 
         $response = Http::get($apiUrl);
 
@@ -29,8 +35,8 @@ class SyncHabboBadges extends Command
 
         $badges = $response->json()['badges'] ?? [];
 
-        $imagePath = '/var/www/assets/swf/c_images/album1584';
-        if (!file_exists($imagePath)) mkdir($imagePath, 0755, true);
+        $savePath = '/var/www/assets/swf/c_images/album1584/';
+        if (!file_exists($savePath)) mkdir($savePath, 0755, true);
 
         foreach ($badges as $badge) {
             $code = $badge['code'] ?? null;
@@ -39,24 +45,33 @@ class SyncHabboBadges extends Command
 
             if (!$code) continue;
 
-            // Check if badge already exists in DB
-            $exists = DB::table('badge_definitions')->where('code', $code)->exists();
+            $filename = $savePath . $code . '.' . $format;
+            $remoteUrl = ($format === 'png')
+                ? "https://images.habbo.com/c_images/album1584/{$code}.png"
+                : "https://images.habbo.com/c_images/album1584/{$code}.gif";
 
-            if (!$exists) {
-                // Save image if it doesn't exist
-                $localImage = "$imagePath/{$code}.gif";
-                if (!file_exists($localImage)) {
-                    $remoteImage = "https://images.habbo.com/c_images/album1584/{$code}.gif";
-                    try {
-                        file_put_contents($localImage, file_get_contents($remoteImage));
-                        $this->info("🖼️ Downloaded image for: $code");
-                    } catch (\Exception $e) {
-                        $this->warn("⚠️ Failed to download image for: $code");
+            // Skip if file already exists
+            if (file_exists($filename)) {
+                $this->line("⏩ Skipped (already exists): $code.$format");
+            } else {
+                try {
+                    $imageData = file_get_contents($remoteUrl);
+
+                    if ($imageData) {
+                        file_put_contents($filename, $imageData);
+                        $this->info("✅ Downloaded: $code.$format");
+                    } else {
+                        $this->warn("⚠️ Empty image response for: $code");
                         continue;
                     }
-                }
 
-                // Insert or update DB
+                } catch (\Exception $e) {
+                    $this->warn("❌ Failed to download image for $code — " . $e->getMessage());
+                    continue;
+                }
+            }
+
+            // Sync to database
             DB::table('badge_definitions')->updateOrInsert(
                 ['code' => $code],
                 [
@@ -65,10 +80,7 @@ class SyncHabboBadges extends Command
                 ]
             );
 
-                $this->info("✅ Inserted badge: $code");
-            } else {
-                $this->line("⏭️ Skipped existing badge: $code");
-            }
+            $this->line("📝 Synced badge: $code");
         }
 
         $this->info("🎉 Badge sync complete!");

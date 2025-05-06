@@ -127,7 +127,7 @@
                                     </div>
                                 </div>
                             </div>
-                            @if ($websiteSetting->trial_moderator_view === 'true')
+                            @if (\App\Models\WebsiteSetting::isTrialModView())
                            <div class="card">
                                 <div class="card-body">
                                     <h5 class="silver" style="background-color: #505050; text-shadow: none; color: #fff;border-radius: 5px;margin-bottom: 8px;">

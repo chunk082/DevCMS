@@ -25,7 +25,7 @@ mix.css('resources/assets/web/css/app.css', 'public/assets/web/')
 // Reduce processing time. (Web Only)
 mix.copy('resources/assets/web/js/vendor.js', 'public/assets/web/vendor.js')
    .copy('resources/assets/web/js/app.js', 'public/assets/web/app.js')
-   .copy('resources/assets/web/js/manifest.js', 'public/assets/web/manifest.js')
+   .js('resources/assets/web/js/manifest.js', 'public/assets/web/')
    .version();
 
 // Handle dynamic cache-busting

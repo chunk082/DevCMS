@@ -17,21 +17,25 @@ class MaintenanceController extends Controller
     }
 
     public function updateMaintenance(Request $request)
-    {
-        $messages = [];
+{
+    $messages = [];
 
-        // Handle Maintenance Mode
-        $maintenanceMode = $request->input('maintenance_mode');
-        if (WebsiteSetting::isMaintenanceModeEnabled() != $maintenanceMode) {
-            WebsiteSetting::updateMaintenanceMode($maintenanceMode);
-            $messages[] = $maintenanceMode == 'true' ? 'You have enabled Maintenance Mode!' : 'You have disabled Maintenance Mode!';
-            logHousekeepingActivity("User: " . auth()->user()->username . " has " . ($maintenanceMode == 'true' ? 'enabled' : 'disabled') . " Maintenance Mode.");
-        }
+    $maintenanceMode = $request->input('maintenance_mode') === 'true' ? 'true' : 'false';
 
-        // Combine the messages into a single string
-        $successMessage = implode(' ', $messages);
+    // Update the key-value setting
+    \App\Models\WebsiteSetting::updateOrCreate(
+        ['key' => 'maintenance_mode'],
+        ['value' => $maintenanceMode]
+    );
 
-        return redirect()->route('housekeeping.admin.maintenance')->with('success', $successMessage);
-    }
+    $messages[] = $maintenanceMode === 'true'
+        ? 'You have enabled Maintenance Mode!'
+        : 'You have disabled Maintenance Mode!';
+
+    logHousekeepingActivity("User: " . auth()->user()->username . " has " . ($maintenanceMode === 'true' ? 'enabled' : 'disabled') . " Maintenance Mode.");
+
+    return redirect()->route('housekeeping.admin.maintenance')->with('success', implode(' ', $messages));
+}
+
 }
 

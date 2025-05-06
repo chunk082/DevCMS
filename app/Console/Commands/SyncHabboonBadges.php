@@ -8,12 +8,18 @@ use Illuminate\Support\Facades\DB;
 
 class SyncHabboonBadges extends Command
 {
-    protected $signature = 'habboon:sync-badges';
-    protected $description = 'Sync badges from Habboon ExternalTexts and album1584.';
+    protected $signature = 'habboon:sync-badges {--format=gif}';
+    protected $description = 'Sync badges from Habboon ExternalTexts and album1584, and optionally convert to PNG.';
 
     public function handle()
     {
-        $this->info('🔄 Fetching badge metadata from Habboon...');
+        $format = strtolower($this->option('format'));
+        if (!in_array($format, ['gif', 'png'])) {
+            $this->error("❌ Invalid format. Use --format=gif or --format=png");
+            return;
+        }
+
+        $this->info("🔄 Fetching badge metadata from Habboon...");
         $response = Http::get('https://assets.habboon.pw/nitro/gamedata/ExternalTexts.json');
 
         if ($response->failed()) {
@@ -36,35 +42,58 @@ class SyncHabboonBadges extends Command
                 ];
             });
 
-        $savePath = '/var/www/assets/swf/c_images/album1584/'; // Adjust to your production subdomain path
+        $savePath = '/public/test/habboon/';
         if (!file_exists($savePath)) mkdir($savePath, 0755, true);
 
-        $this->info('📥 Downloading badge images...');
+        $this->info("📥 Downloading badge images as .$format...");
 
         foreach ($badges as $code => $badge) {
-            $localPath = $savePath . $code . '.gif';
+            $localPath = $savePath . $code . '.' . $format;
 
             // Skip if file already exists
             if (file_exists($localPath)) {
                 $this->line("⏩ Skipped (already exists): $code");
-            } else {
-                try {
-                    $imageResponse = Http::withHeaders([
-                        'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-                    ])->get($badge['image_url']);
-
-                    if ($imageResponse->successful()) {
-                        file_put_contents($localPath, $imageResponse->body());
-                        $this->info("✅ Downloaded: $code");
-                    } else {
-                        $this->warn("❌ Failed to fetch image: $code — " . $imageResponse->status());
-                    }
-                } catch (\Exception $e) {
-                    $this->warn("⚠️ Failed: $code — " . $e->getMessage());
-                }
+                continue;
             }
 
-            // Insert or update database
+            try {
+                $imageResponse = Http::withHeaders([
+                    'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+                ])->get($badge['image_url']);
+
+                if ($imageResponse->successful()) {
+                    $gifData = $imageResponse->body();
+
+                    if ($format === 'png') {
+                        $tmpFile = tmpfile();
+                        $tmpPath = stream_get_meta_data($tmpFile)['uri'];
+                        file_put_contents($tmpPath, $gifData);
+
+                        $gifImage = @imagecreatefromgif($tmpPath);
+                        if (!$gifImage) {
+                            $this->warn("⚠️ Failed to convert $code to PNG");
+                            fclose($tmpFile);
+                            continue;
+                        }
+
+                        imagepng($gifImage, $localPath);
+                        imagedestroy($gifImage);
+                        fclose($tmpFile);
+                        $this->info("✅ Converted & saved as PNG: $code");
+                    } else {
+                        file_put_contents($localPath, $gifData);
+                        $this->info("✅ Downloaded GIF: $code");
+                    }
+
+                } else {
+                    $this->warn("❌ Failed to fetch image: $code — " . $imageResponse->status());
+                }
+            } catch (\Exception $e) {
+                $this->warn("⚠️ Failed: $code — " . $e->getMessage());
+                continue;
+            }
+
+            // Insert or update DB
             try {
                 DB::table('badge_definitions')->updateOrInsert(
                     ['code' => $code],
@@ -78,6 +107,6 @@ class SyncHabboonBadges extends Command
             }
         }
 
-        $this->info('🎉 Badge sync from Habboon complete!');
+        $this->info("🎉 Badge sync from Habboon complete!");
     }
 }

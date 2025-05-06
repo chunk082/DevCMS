@@ -1,4 +1,4 @@
-@if($maintenanceMode === 'true')
+@if($maintenanceMode)
     <div style="background: #d9534f; color: white; padding: 10px; text-align: center;">
         The website is currently in <strong>read-only</strong> maintenance mode.
     </div>
@@ -82,7 +82,7 @@
                 @php
                     $websiteSetting = App\Models\WebsiteSetting::first();
                 @endphp
-                @if ($websiteSetting && $websiteSetting->staff_application_tab_visible == 'true' && !request()->is('/'))
+                @if (\App\Models\WebsiteSetting::isStaffApplicationTabVisible() && !request()->is('/'))
                     <li class="nav-item">
                         <a href="{{ route('staff.application') }}" class="nav-link {{ request()->routeIs('staff.application') ? 'active' : '' }}" style="color: red;">Staff Application</a>
                     </li>
