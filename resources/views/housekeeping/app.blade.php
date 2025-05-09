@@ -286,7 +286,19 @@
                 </ul>
             </li>
 
-            <!-- Catalogue Menu -->
+            <!-- Store Menu -->
+            <li class="nav-item">
+                <a href="#" class="nav-link d-flex justify-content-between align-items-center toggle-link">
+                    <span><i class="bi bi-basket me-2"></i>Dev Store</span>
+                    <i class="bi bi-caret-right toggle-caret {{ request()->routeIs('housekeeping.store.*') ? 'rotate' : '' }}"></i>
+                </a>
+                <ul class="submenu {{ request()->routeIs('housekeeping.store.*') ? 'open' : '' }}">
+                    <li><a href="{{ route('housekeeping.store.transactions')}}" class="nav-link {{ request()->routeIs('housekeeping.store.transactions') ? 'active' : '' }}">Transaction</a></li>
+                    <li><a href="{{ route('housekeeping.store.wallet')}}" class="nav-link {{ request()->routeIs('housekeeping.store.wallet') ? 'active' : '' }}">Users Wallet</a></li>
+                </ul>
+            </li>
+
+            <!-- Emulator Menu -->
             <li class="nav-item">
                 <a href="#" class="nav-link d-flex justify-content-between align-items-center toggle-link">
                     <span><i class="bi bi-server me-2"></i>Emulator Settings</span>

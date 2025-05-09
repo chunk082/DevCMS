@@ -10046,7 +10046,7 @@ a.text-dark:focus, a.text-dark:hover {
 header {
     align-items: center;
     background-color: rgba(0, 0, 0, .6);
-    background-image: url(/img/header-2021.png);
+    background-image: url(/img/header-2025.png);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -10056,6 +10056,50 @@ header {
     justify-content: center;
     vertical-align: middle;
     width:100%
+}
+
+header.pride {
+    height: 170px;
+    position:relative
+}
+
+header.pride:before {
+    background: linear-gradient(90deg, hsla(0, 62%, 64%, .5), rgba(220, 143, 88, .5), hsla(50, 73%, 67%, .5), rgba(101, 236, 105, .5), rgba(81, 173, 251, .5), rgba(203, 45, 243, .5));
+    content: "";
+    height: 100%;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index:1
+}
+
+header.pride .container {
+    position: relative;
+    z-index:2
+}
+
+header.blue {
+    height: 170px;
+    position:relative
+}
+
+header.blue:before {
+    background: linear-gradient(135deg, rgba(25, 89, 133, .3), rgba(47, 128, 184, .3) 25%, rgba(86, 156, 204, .3) 50%, rgba(120, 182, 226, .3) 75%, rgba(173, 216, 245, .3));
+    content: "";
+    height: 100%;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index:1
+}
+
+header.blue .container {
+    position: relative;
+    z-index:2
 }
 
 header .enter {

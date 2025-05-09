@@ -24,6 +24,18 @@
                     <strong>Heads up!</strong>
                      The store is still in development. At this time VIP is currently not available. Please check back later.
                 </div>
+                @if (session('success'))
+    <div class="alert alert-success" style="background-color: #d4edda; border-color: #c3e6cb; color: #155724; padding: 10px; border-radius: 4px; margin-bottom: 15px;">
+        <strong>Success!</strong> {{ session('success') }}
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger" style="background-color: #f8d7da; border-color: #f5c6cb; color: #721c24; padding: 10px; border-radius: 4px; margin-bottom: 15px;">
+        <strong>Error!</strong> {{ session('error') }}
+    </div>
+@endif
+
             </div>
             <div class="col-lg-8 col-md-8 col-12">
                 <h5 class="silver">VIP Ranks</h5>
@@ -37,11 +49,11 @@
                                     </div>
                                     <div class="col text-center">
                                         Bronze (
-                                        <span class="price">£5</span>
+                                        <span class="price">$5</span>
                                         )
                                     </div>
                                     <div class="col-12 mt-3">
-                                       <form action="#" method="POST" style="display: inline-block;">
+                                       <form action="{{ route('store.purchase') }}" method="POST" style="display: inline-block;">
                                             @csrf
                                             <input type="hidden" name="product" value="bronze_vip">
                                             <button type="submit" class="btn btn-success">Buy</button>
@@ -66,11 +78,11 @@
                                     </div>
                                     <div class="col text-center">
                                         Silver (
-                                        <span class="price">£7</span>
+                                        <span class="price">$7</span>
                                         )
                                     </div>
                                     <div class="col-12 mt-3">
-                                         <form action="#" method="POST" style="display: inline-block;">
+                                         <form action="{{ route('store.purchase') }}" method="POST" style="display: inline-block;">
                                             @csrf
                                             <input type="hidden" name="product" value="silver_vip">
                                             <button type="submit" class="btn btn-success">Buy</button>
@@ -95,11 +107,11 @@
                                     </div>
                                     <div class="col text-center">
                                         Gold (
-                                        <span class="price">£12</span>
+                                        <span class="price">$12</span>
                                         )
                                     </div>
                                     <div class="col-12 mt-3">
-                                         <form action="#" method="POST" style="display: inline-block;">
+                                         <form action="{{ route('store.purchase') }}" method="POST" style="display: inline-block;">
                                             @csrf
                                             <input type="hidden" name="product" value="gold_vip">
                                             <button type="submit" class="btn btn-success">Buy</button>
@@ -170,11 +182,11 @@
                                     </div>
                                     <div class="col text-right">
                                         220 Diamonds (
-                                        <span class="price">£4</span>
+                                        <span class="price">$4</span>
                                         )
                                     </div>
                                     <div class="col-12" style="margin-top: 10px;">
-                                        <form action="#" method="POST">
+                                        <form action="{{ route('store.purchase') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="product" value="diamonds_220">
                                             <button type="submit" class="btn btn-success btn-block">Purchase</button>
@@ -193,11 +205,11 @@
                                     </div>
                                     <div class="col text-right">
                                         700 Diamonds (
-                                        <span class="price">£11</span>
+                                        <span class="price">$11</span>
                                         )
                                     </div>
                                     <div class="col-12" style="margin-top: 10px;">
-                                        <form action="#" method="POST">
+                                        <form action="{{ route('store.purchase') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="product" value="diamonds_700">
                                             <button type="submit" class="btn btn-success btn-block">Purchase</button>
@@ -216,11 +228,11 @@
                                     </div>
                                     <div class="col text-right">
                                         1200 Diamonds (
-                                        <span class="price">£14</span>
+                                        <span class="price">$14</span>
                                         )
                                     </div>
                                     <div class="col-12" style="margin-top: 10px;">
-                                        <form action="#" method="POST">
+                                        <form action="{{ route('store.purchase') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="product" value="diamonds_1200">
                                             <button type="submit" class="btn btn-success btn-block">Purchase</button>
@@ -523,28 +535,32 @@
                          to other players.
                     </p>
                     <div id="gifting-alert-messages"></div>
-                    <form method="POST" id="gift-vip-form" class="form" style="display: inline-block;">
-                        <div class="form-group">
-                            <label for="username" class="font-weight-bold">Username</label>
-                            <input type="text" name="username" id="username" class="form-control" data-parsley-required-message="Please enter the recipients username." required>
-                        </div>
-                        <input type="hidden" name="product" value>
-                        <input type="hidden" name="_token" value="iTCLpt4PesbaixTXMEFDnDBH25wO8UIPthg3Fa8G" autocomplete="off">
+                    <form method="POST" id="gift-vip-form" class="form" style="display: inline-block;" action="{{ route('store.gift.vip') }}">
+    @csrf
 
-                        <div id="confirmation-section" style="display: none;">
-                            <div class="form-group">
-                                <p>Confirm the following details:</p>
-                                <p id="confirmation-details"></p>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="confirm" id="confirm-checkbox">
-                                    <label class="form-check-label" for="confirm-checkbox">
-                                    I confirm the above details are correct.
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-success">Gift</button>
-                    </form>
+    <div class="form-group">
+        <label for="username" class="font-weight-bold">Username</label>
+        <input type="text" name="recipient" id="username" class="form-control" required>
+    </div>
+
+    <input type="hidden" name="product" value>
+
+    <div id="confirmation-section" style="display: none;">
+        <div class="form-group">
+            <p>Confirm the following details:</p>
+            <p id="confirmation-details"></p>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="confirm" id="confirm-checkbox">
+                <label class="form-check-label" for="confirm-checkbox">
+                    I confirm the above details are correct.
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Gift</button>
+</form>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -2,22 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UsersWallet extends Model
+class UsersTransaction extends Model
 {
-    use HasFactory;
-
-    protected $table = 'users_wallet'; // very important!
+    protected $table = 'users_transaction'; // Required due to singular table name
 
     protected $fillable = [
         'user_id',
-        'balance',
+        'amount',
+        'desc',
+        'transaction_id',
     ];
 
     /**
-     * Get the user that owns this wallet.
+     * Get the user that owns the transaction.
      */
     public function user()
     {

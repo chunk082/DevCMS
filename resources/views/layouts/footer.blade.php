@@ -1,4 +1,7 @@
 <footer class="position-relative mt-5">
+    @if($currentTheme === 'Halloween')
+    <div class="halloween-trees"></div>
+    @endif
     @if($currentTheme === 'Christmas')
     <div class="christmas-trees"></div>
     @endif
@@ -71,6 +74,17 @@
             <p>{{ config('app.name')}} is a not for profit educational project.</p>
         </div>
     </footer>
+
+   @if($currentTheme === 'Halloween')
+    <div class="spiders">
+        <div class="spider" style="left:10%"></div>
+        <div class="spider" style="left:30%"></div>
+        <div class="spider" style="left:50%"></div>
+        <div class="spider" style="left:70%"></div>
+        <div class="spider" style="left:90%"></div>
+    </div>
+@endif
+
 
     @if($currentTheme === 'Christmas')
     <div class="snowflakes" aria-hidden="true">

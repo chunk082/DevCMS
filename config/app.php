@@ -39,7 +39,7 @@ return [
     |
     */
     
-    'app_assets' => env('APP_ASSETS', 'undefined'),
+    'app_assets' => env('APP_ASSETS', 'https://assets.devcms.online'),
 
     /*
     |--------------------------------------------------------------------------

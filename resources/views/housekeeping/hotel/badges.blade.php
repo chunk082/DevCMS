@@ -49,7 +49,7 @@
                             <td>{{ $badge->id }}</td>
                             <td>{{ $badge->username }}</td>
                             <td>
-                                <img src="{{ asset('/img/badges/' . $badge->badge_code . '.gif') }}" alt="{{ $badge->badge_code }}" width="30">
+                                <img src="{{ config('app.app_assets') }}/swf/c_images/album1584/{{ $badge->badge_code }}.gif" alt="{{ $badge->badge_code }}" width="30">
                             </td>
                             <td>{{ $badge->badge_code }}</td>
                             <td>

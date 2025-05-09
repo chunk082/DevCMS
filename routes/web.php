@@ -32,6 +32,7 @@ use App\Http\Controllers\Marketplace\MarketplaceController;
 */
 
 use App\Http\Controllers\Store\CryptoController;
+use App\Http\Controllers\Store\StoreController;
 
 /*
 |--------------------------
@@ -106,6 +107,8 @@ use App\Http\Controllers\Housekeeping\Admin\SyncBadgesController;
 use App\Http\Controllers\Housekeeping\Catalogue\CatalogPagesController;
 use App\Http\Controllers\Housekeeping\Catalogue\CatalogItemsController;
 use App\Http\Controllers\Housekeeping\Catalogue\FurnitureController;
+
+use App\Http\Controllers\Housekeeping\Store\StoreLogController;
 
 use App\Http\Controllers\Housekeeping\Emulator\EmulatorSettingsController;
 use App\Http\Controllers\Housekeeping\Emulator\EmulatorTextsController;
@@ -234,6 +237,11 @@ Route::post('/store/payment', [CryptoController::class, 'store'])->name('payment
 Route::get('/store/payment/{id}/status', [CryptoController::class, 'status']);
 Route::get('/store/payment/{payment}/check-address', [CryptoController::class, 'checkAddressDebug'])->name('payment.checkAddress');
 
+Route::post('/store/purchase', [StoreController::class, 'purchase'])->name('store.purchase');
+Route::post('/store/gift-vip', [StoreController::class, 'giftVIP'])->name('store.gift.vip');
+
+
+
 /* Help Pages */
 Route::get('/help', function () {
     return view('help');
@@ -360,9 +368,16 @@ Route::prefix('housekeeping')->group(function () {
         });
 
 
+        /* Store Section */
+        Route::prefix('store')->name('housekeeping.store.')->group(function () {
+            Route::get('/transactions', [StoreLogController::class, 'index'])->name('transactions');
+            Route::get('/wallet', [StoreLogController::class, 'wallet'])->name('wallet');
+        });
+
+
         /* Emulator Settings */
 
-        Route::prefix('emulator')->name('housekeeping.emulator.settings.')->group(function () {
+         Route::prefix('emulator')->name('housekeeping.emulator.settings.')->group(function () {
             Route::get('/', [EmulatorSettingsController::class, 'index'])->name('index'); 
             Route::put('/update/{key}', [EmulatorSettingsController::class, 'update'])->name('update');
             

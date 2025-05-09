@@ -3,13 +3,13 @@
         The website is currently in <strong>read-only</strong> maintenance mode.
     </div>
 @endif
-<header class="position-relative">
-    <div id="pride"></div>
+<header class="position-relative blue">
     <div class="container">
         <div class="row justify-content-center justify-content-md-between justify-content-lg-between align-items-center">
             <div class="col-lg-3 col-md-6 d-lg-block d-md-block d-flex justify-content-center">
                 <a href="/">
-                    <img src="{{ asset('/img/dev.gif') }}" alt="Dev Logo" loading="lazy">
+    <img src="{{ asset($currentTheme === 'Halloween' ? '/seasonal/halloween/dev.gif' : ($currentTheme === 'Christmas' ? '/seasonal/christmas/dev.gif' : '/img/dev.gif')) }}" alt="Dev Logo" loading="lazy">
+
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-12 mt-2 mt-md-0">

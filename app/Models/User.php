@@ -113,6 +113,21 @@ class User extends Authenticatable
         return $this->rank >= 5;
     }
 
+    public function wallet()
+    {
+    return $this->hasOne(\App\Models\UsersWallet::class, 'user_id');
+    }
+
+    public function transactions()
+    {
+    return $this->hasMany(UsersTransaction::class, 'user_id');
+    }
+
+    public function currencies()
+    {
+    return $this->hasMany(UsersCurrency::class, 'user_id');
+    }
+
     /**
      * Relationship with the users_settings table.
      */
