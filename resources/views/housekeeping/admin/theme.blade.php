@@ -17,6 +17,7 @@
             <label for="theme" class="form-label">Select Active Theme</label>
             <select class="form-select" id="theme" name="theme">
                 <option value="default" {{ $currentTheme === 'default' ? 'selected' : '' }}>Default</option>
+                <option value="Boon" {{ $currentTheme === 'Boon' ? 'selected' : '' }}>Boon</option>
                 <option value="Christmas" {{ $currentTheme === 'Christmas' ? 'selected' : '' }}>Christmas</option>
                 <option value="Halloween" {{ $currentTheme === 'Halloween' ? 'selected' : '' }}>Halloween</option>
             </select>

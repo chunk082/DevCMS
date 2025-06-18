@@ -8,7 +8,12 @@
         <div class="row justify-content-center justify-content-md-between justify-content-lg-between align-items-center">
             <div class="col-lg-3 col-md-6 d-lg-block d-md-block d-flex justify-content-center">
                 <a href="/">
-    <img src="{{ asset($currentTheme === 'Halloween' ? '/seasonal/halloween/dev.gif' : ($currentTheme === 'Christmas' ? '/seasonal/christmas/dev.gif' : '/img/dev.gif')) }}" alt="Dev Logo" loading="lazy">
+    <img src="{{ asset(
+    $currentTheme === 'Halloween' ? '/seasonal/halloween/dev.gif' :
+    ($currentTheme === 'Christmas' ? '/seasonal/christmas/dev.gif' :
+    ($currentTheme === 'Boon' ? '/seasonal/boon/boon.gif' :
+    '/img/dev.gif'))
+) }}" alt="Dev Logo" loading="lazy">
 
                 </a>
             </div>
@@ -79,12 +84,13 @@
                 <li class="nav-item">
                     <a href="{{ route('theway') }}" class="nav-link {{ request()->routeIs('theway') ? 'active' : '' }}">The {{ config('app.name') }} Way</a>
                 </li>
-                @php
-                    $websiteSetting = App\Models\WebsiteSetting::first();
+               @php
+                $websiteSetting = \App\Models\WebsiteSetting::first();
                 @endphp
-                @if (\App\Models\WebsiteSetting::isStaffApplicationTabVisible() && !request()->is('/'))
+
+                @if (auth()->check() && \App\Models\WebsiteSetting::isStaffApplicationTabVisible())
                     <li class="nav-item">
-                        <a href="{{ route('staff.application') }}" class="nav-link {{ request()->routeIs('staff.application') ? 'active' : '' }}" style="color: red;">Staff Application</a>
+                        <a href="{{ route('staff.application') }}" class="nav-link {{ request()->routeIs('staff.application') ? 'active' : '' }}">Staff Application</a>
                     </li>
                 @endif
             </ul>

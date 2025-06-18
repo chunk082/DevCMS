@@ -26,14 +26,29 @@ class SyncBadgesController extends Controller
     }
 
     public function runHabboonSync()
+{
+    Artisan::queue('habboon:sync-badges');
+
+    logHousekeepingActivity(auth()->user()->username . ' queued Habboon badge sync');
+
+    return redirect()->back()
+        ->with('success', '⏳ Habboon badge sync has started in the background. Check back later.');
+}
+
+
+    public function run(\Illuminate\Http\Request $request)
     {
-        Artisan::call('habboon:sync-badges');
-        $output = Artisan::output();
+        $source = $request->input('source');
 
-        logHousekeepingActivity(auth()->user()->username . ' synced Habboon badges');
-
-        return redirect()->back()
-            ->with('consoleOutput', $output)
-            ->with('success', '✅ Habboon badge sync completed.');
+        if ($source === 'habbo') {
+            return $this->runHabboSync();
     }
+
+        if ($source === 'habboon') {
+            return $this->runHabboonSync();
+    }
+
+        return redirect()->back()->with('error', 'Invalid sync source.');
+    }
+
 }

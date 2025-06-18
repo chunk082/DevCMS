@@ -17,7 +17,10 @@ public function create()
 
 public function store(Request $request)
 {
-    \Log::info('Authenticated User ID:', ['user_id' => Auth::id()]);
+    \Log::info('📥 Staff Application Attempt:', [
+        'user_id' => Auth::id(),
+        'data' => $request->all()
+    ]);
 
     $request->validate([
         'username' => 'required|string|max:50',
@@ -26,7 +29,7 @@ public function store(Request $request)
         'country' => 'required|string|max:50',
         'reason_for_joining' => 'required|string',
         'new_ideas' => 'required|string',
-        'availability_per_day' => 'required|string|max:100',
+        'availability_per_day' => 'required|string|max:255',
         'additional_info' => 'nullable|string',
     ]);
 

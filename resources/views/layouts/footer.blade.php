@@ -13,7 +13,7 @@
                          @if($online_user_count > 0)
                             @foreach($onlineUsers as $user)
                                  <div class="avatar {{ $loop->iteration % 2 == 0 ? 'dark-gray' : 'light-gray' }}">
-<img src="https://imager.habboon.pw/?figure={{ $user->look }}&direction=3&head_direction=3&gesture=sml&headonly=1" alt="{{ $user->username }}"  data-toggle="tooltip" data-placement="top" title="{{ $user->username }}" loading="lazy">
+<img src="https://imager.habboon.pw/?figure={{ $user->look }}&direction=3&head_direction=3&gesture=sml&headonly=1" alt="{{ $user->username }}"  data-bs-toggle="tooltip" data-placement="top" title="{{ $user->username }}">
                                 </div>
                             @endforeach
                             @else
@@ -21,7 +21,7 @@
                             @endif
                     </div>
                     <div class="col-lg-3 col-6">
-                        <h4 class="mb-3">Help</h4>
+                        <h4 class="mb-3">Support</h4>
                         <ul class="links">
                             <li class="mb-1">
                                 <a href="/help" aria-label="Help">
@@ -37,7 +37,7 @@
                             </li>
                         </ul>
                     </div>
-                    <!--- <div class="col-lg-3 col-6">
+              <!--      <div class="col-lg-3 col-6">
                         <h4 class="mb-3">Social</h4>
                         <ul class="social">
                             <li>
@@ -62,16 +62,17 @@
                             </li>
                             <li>
                                 <a href="#" target="_blank" rel="noopener" aria-label="Instagram">
-                                    <i class="fab fa-discord"></i>
+                                    <i class="bi bi-discord"></i>
                                 </a>
                             </li>
                         </ul>
-                    </div> -->
+                    </div> --->
                 </div>
             </div>
         </div>
         <div id="legal-footer">
-            <p>{{ config('app.name')}} is a not for profit educational project.</p>
+            &copy; {{ config('app.name')}}CMS is licensed under the GNU GPL v3.<br>
+            This project is developed for educational purposes.
         </div>
     </footer>
 

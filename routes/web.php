@@ -370,6 +370,7 @@ Route::prefix('housekeeping')->group(function () {
 
         /* Store Section */
         Route::prefix('store')->name('housekeeping.store.')->group(function () {
+            Route::get('/crypto', [StoreLogController::class, 'crypto'])->name('crypto');
             Route::get('/transactions', [StoreLogController::class, 'index'])->name('transactions');
             Route::get('/wallet', [StoreLogController::class, 'wallet'])->name('wallet');
         });
@@ -421,8 +422,8 @@ Route::prefix('housekeeping')->group(function () {
         Route::post('/admin/webtabs', [WebTabsController::class, 'updateWebTabs'])->name('housekeeping.admin.webtabs.update');
 
         Route::get('/admin/syncbadges', [SyncBadgesController::class, 'index'])->name('housekeeping.admin.syncbadges');
-        Route::post('/admin/syncbadges/run', [SyncBadgesController::class, 'runSyncHabboSync'])->name('housekeeping.admin.syncbadges.run');
-        Route::post('/admin/syncbadges/run', [SyncBadgesController::class, 'runSyncHabboonSync'])->name('housekeeping.admin.syncbadges.run');
+        Route::post('/admin/syncbadges/run', [SyncBadgesController::class, 'run'])->name('housekeeping.admin.syncbadges.run');
+
 
 
 

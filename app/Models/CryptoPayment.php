@@ -23,4 +23,9 @@ class CryptoPayment extends Model
     protected $casts = [
         'expires_at' => 'datetime',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

@@ -22,7 +22,7 @@ public function store(Request $request)
 
     // Create direct payment
     $response = Http::withHeaders([
-        'x-api-key' => env('NOWPAYMENTS_API_KEY'),
+        'x-api-key' => config('services.nowpayments.api_key'),
     ])->post('https://api.nowpayments.io/v1/payment', [
         'price_amount' => $validated['amount'],
         'price_currency' => 'usd',

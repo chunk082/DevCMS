@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\UsersWallet;
 use App\Models\UsersTransaction;
+use App\Models\CryptoPayment;
 use App\Models\User;
 
 class StoreLogController extends Controller
@@ -37,4 +38,14 @@ class StoreLogController extends Controller
 
         return view('housekeeping.store.wallet', compact('wallets'));
     }
+
+    public function crypto()
+    {   
+        $cryptoPayments = CryptoPayment::with('user')
+            ->latest()
+            ->paginate(25);
+
+        return view('housekeeping.store.crypto', compact('cryptoPayments'));
+    }
+
 }

@@ -1,0 +1,126 @@
+#ATTENTION!
+#
+#DO NOT MODIFY THIS FILE BECAUSE IT WAS GENERATED AUTOMATICALLY,
+#SO ALL YOUR CHANGES WILL BE LOST THE NEXT TIME THE FILE IS GENERATED.
+#IF YOU REQUIRE TO APPLY CUSTOM MODIFICATIONS, PERFORM THEM IN THE FOLLOWING FILES:
+#/var/www/vhosts/system/mail.devcms.online/conf/vhost.conf
+#/var/www/vhosts/system/mail.devcms.online/conf/vhost_ssl.conf
+<IfModule mod_ssl.c>
+
+	<VirtualHost 66.179.208.184:443 >
+		ServerName "mail.devcms.online"
+		ServerAlias "www.mail.devcms.online"
+		ServerAlias "ipv4.mail.devcms.online"
+		UseCanonicalName Off
+
+		CustomLog /var/www/vhosts/system/mail.devcms.online/logs/access_ssl_log plesklog
+		ErrorLog "/var/www/vhosts/system/mail.devcms.online/logs/error_log"
+
+		DocumentRoot "/var/www/vhosts/devcms.online/www/acme-mail"
+
+		<IfModule mod_suexec.c>
+			SuexecUserGroup "mailweb" "psacln"
+		</IfModule>
+
+		<IfModule mod_userdir.c>
+			UserDir "/var/www/vhosts/devcms.online/web_users/*"
+		</IfModule>
+
+		<IfModule mod_sysenv.c>
+			SetSysEnv PP_VHOST_ID "93d7839b-21cb-433e-9f72-76295e33f7b4"
+		</IfModule>
+
+		SSLEngine on
+		SSLVerifyClient none
+		SSLCertificateFile /opt/psa/var/certificates/certW3ONPbr
+
+		<Directory /var/www/vhosts/devcms.online/www/acme-mail>
+
+			<IfModule mod_php4.c>
+				php_admin_flag engine off
+			</IfModule>
+
+			<IfModule mod_php5.c>
+				php_admin_flag engine off
+			</IfModule>
+
+			<IfModule mod_php7.c>
+				php_admin_flag engine off
+			</IfModule>
+
+			SSLRequireSSL
+
+			Options -Includes -ExecCGI
+
+		</Directory>
+
+		<Directory /var/www/vhosts/devcms.online>
+			Options +FollowSymLinks
+		</Directory>
+
+		DirectoryIndex "index.html" "index.cgi" "index.pl" "index.php" "index.xhtml" "index.htm" "index.shtml"
+
+		<Directory /var/www/vhosts/devcms.online>
+			Options -FollowSymLinks
+			AllowOverride AuthConfig FileInfo Indexes Limit Options=Indexes,SymLinksIfOwnerMatch,MultiViews,ExecCGI,Includes,IncludesNOEXEC
+		</Directory>
+
+		<IfModule mod_headers.c>
+		</IfModule>
+
+		#extension sslit begin
+
+		#extension sslit end
+
+		#extension letsencrypt begin
+		Alias /.well-known/acme-challenge "/var/www/vhosts/default/htdocs/.well-known/acme-challenge"
+
+		<Location /.well-known/acme-challenge/>
+			# Require all granted
+			Order Deny,Allow
+			Allow from all
+			Satisfy any
+		</Location>
+
+		<LocationMatch "^/.well-known/acme-challenge/(.*/|)\.">
+			# Require all denied
+			Order Allow,Deny
+			Deny from all
+		</LocationMatch>
+		#extension letsencrypt end
+
+		#extension sectigo begin
+		AliasMatch "^/.well-known/pki-validation/(?!fileauth.txt)$" "/var/www/vhosts/default/htdocs/.well-known/pki-validation/$1"
+
+		<Location /.well-known/pki-validation/>
+			# Require all granted
+			Order Deny,Allow
+			Allow from all
+			Satisfy any
+		</Location>
+
+		<LocationMatch "^/.well-known/pki-validation/(.*/|)\.">
+			# Require all denied
+			Order Allow,Deny
+			Deny from all
+		</LocationMatch>
+		#extension sectigo end
+	</VirtualHost>
+
+</IfModule>
+
+<VirtualHost 66.179.208.184:80 >
+	ServerName "mail.devcms.online"
+	ServerAlias "www.mail.devcms.online"
+	ServerAlias "ipv4.mail.devcms.online"
+	UseCanonicalName Off
+
+	CustomLog /var/www/vhosts/system/mail.devcms.online/logs/access_log plesklog
+	ErrorLog "/var/www/vhosts/system/mail.devcms.online/logs/error_log"
+
+	<IfModule mod_rewrite.c>
+		RewriteEngine On
+		RewriteCond %{HTTPS} off
+		RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,QSA]
+	</IfModule>
+</VirtualHost>

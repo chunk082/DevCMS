@@ -42,7 +42,7 @@ class SyncHabboonBadges extends Command
                 ];
             });
 
-        $savePath = '/public/test/habboon/';
+        $savePath = '/var/www/assets/swf/c_images/album1584/';
         if (!file_exists($savePath)) mkdir($savePath, 0755, true);
 
         $this->info("📥 Downloading badge images as .$format...");

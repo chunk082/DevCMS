@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1" />
     <title>{{ config('app.name') }} - Client</title>
     
-    <link rel="stylesheet" href="{{ config('app.app_assets') }}/nitro/static/assets/index-f28234df.css">
-    <link rel="stylesheet" href="{{ config('app.app_assets') }}/resources/css/radio.css" hidden>
+    <link rel="stylesheet" href="{{ config('app.app_assets') }}/nitro/static/assets/index-eb44ed43.css">
     <link rel="shortcut icon" href="https://devcms.online/img/favicon-d.png" type="image/vnd.microsoft.icon"/>
 
 </head>
@@ -41,8 +40,8 @@
 </script>
 
 <!-- Nitro Script Modules -->
-<script type="module" crossorigin src="{{ config('app.app_assets') }}/nitro/static/assets/index-2cc59198.js"></script>
-<link rel="modulepreload" crossorigin href="{{ config('app.app_assets') }}/nitro/static/assets/vendor-37a5edee.js">
+<script type="module" crossorigin src="{{ config('app.app_assets') }}/nitro/static/assets/index-9d80f1fd.js"></script>
+<link rel="modulepreload" crossorigin href="{{ config('app.app_assets') }}/nitro/static/assets/vendor-ca9afaeb.js">
 
 <script>
     window.FlashExternalInterface = {};

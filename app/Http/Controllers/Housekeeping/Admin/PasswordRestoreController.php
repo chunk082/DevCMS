@@ -23,7 +23,7 @@ class PasswordRestoreController extends Controller
     {
         $request->validate([
             'username' => 'required|string|exists:users,username',
-            'email' => 'nullable|email',
+            'mail' => 'nullable|mail',
             'subject' => 'required|string',
             'customMessage' => 'nullable|string',
         ]);
@@ -39,7 +39,7 @@ class PasswordRestoreController extends Controller
 
         // Update email if provided
         if ($request->email) {
-            $user->email = $request->email;
+            $user->mail = $request->mail;
         }
 
         $user->save();
@@ -54,7 +54,7 @@ class PasswordRestoreController extends Controller
 
         // Send email using Mail facade
         Mail::send('emails.password-restore', $content, function ($mail) use ($user, $request) {
-            $mail->to($user->email)
+            $mail->to($user->mail)
                 ->subject($request->subject);
         });
 

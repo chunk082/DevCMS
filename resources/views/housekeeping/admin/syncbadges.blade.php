@@ -32,7 +32,7 @@
         </button>
     </form>
 
-    <form method="POST" action="{{ route('housekeeping.admin.syncbadges.run') }}">
+    <form method="POST" action="{{ route('housekeeping.admin.syncbadges.run') }}" style="display: none;">
         @csrf
         <input type="hidden" name="source" value="habboon">
         <button type="submit" class="btn btn-primary">

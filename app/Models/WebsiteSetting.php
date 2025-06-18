@@ -56,7 +56,7 @@ class WebsiteSetting extends Model
      */
     public static function isStaffApplicationTabVisible(): bool
     {
-        return static::get('staff_application_tab_visible', 'false') === 'true';
+        return filter_var(self::get('staff_application_tab_visible', false), FILTER_VALIDATE_BOOLEAN);
     }
 
     /**

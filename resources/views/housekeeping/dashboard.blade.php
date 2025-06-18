@@ -1,7 +1,5 @@
 @extends('housekeeping.app')
 
-@section('title', 'Dashboard')
-
 @section('content')
 <div class="row g-4">
     <!-- Registered Users Card -->

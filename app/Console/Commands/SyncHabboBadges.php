@@ -23,7 +23,7 @@ class SyncHabboBadges extends Command
             return;
         }
 
-        $apiUrl = "https://www.habboassets.com/api/v1/badges?term=staff&hotel=com&limit=2000&order=asc&offset=10";
+        $apiUrl = "https://www.habboassets.com/api/v1/badges?hotel=com&limit=1000";
         $this->info("🔄 Fetching badge data from: $apiUrl");
 
         $response = Http::get($apiUrl);

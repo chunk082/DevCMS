@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Housekeeping</title>
-
+    <title>@yield('title', 'Housekeeping - Dashboard')</title>
     <!-- jQuery -->
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -293,6 +292,7 @@
                     <i class="bi bi-caret-right toggle-caret {{ request()->routeIs('housekeeping.store.*') ? 'rotate' : '' }}"></i>
                 </a>
                 <ul class="submenu {{ request()->routeIs('housekeeping.store.*') ? 'open' : '' }}">
+                    <li><a href="{{ route('housekeeping.store.crypto')}}" class="nav-link {{ request()->routeIs('housekeeping.store.crypto') ? 'active' : '' }}">Crypto Payment</a></li>
                     <li><a href="{{ route('housekeeping.store.transactions')}}" class="nav-link {{ request()->routeIs('housekeeping.store.transactions') ? 'active' : '' }}">Transaction</a></li>
                     <li><a href="{{ route('housekeeping.store.wallet')}}" class="nav-link {{ request()->routeIs('housekeeping.store.wallet') ? 'active' : '' }}">Users Wallet</a></li>
                 </ul>
