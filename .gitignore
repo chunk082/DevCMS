@@ -1,3 +1,9 @@
 /assets/
 /node_modules/
 /devbot/
+/vhost/
+.npm/
+/mail/
+/html/
+*.log
+
