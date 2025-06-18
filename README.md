@@ -1,3 +1,5 @@
+## Follow Step 0 if you don't have Git installed
+
 ### 📦 Step 0 — Install Git (if not already installed)
 
 Run the following command based on your Linux distribution:
@@ -24,7 +26,7 @@ Run the following command based on your Linux distribution:
 If you want to install DevCMS directly to your NGINX web directory:
 
 ### Option A — Without Cloning (Make sure you have git installed):
-# Note if you don't have install installed on VPS run this. 
+
 1. ```cd /var/www```
 2. ```sudo git init```
 3. ```sudo git remote add origin https://github.com/chunk082/DevCMS.git```
