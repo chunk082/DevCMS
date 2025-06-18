@@ -2,7 +2,7 @@
 
 ## Linux Installation
 
-1. Download the git using ```bash git pull https://github.com/chunk082/DevCMS.git ```
+1. Download the git using ```git pull https://github.com/chunk082/DevCMS.git```
 2. Extract 
 
 ## Connecting to Emulator
