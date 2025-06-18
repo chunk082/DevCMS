@@ -6,4 +6,4 @@
 /mail/
 /html/
 *.log
-
+/cgi-bin/
