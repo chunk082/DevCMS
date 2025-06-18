@@ -1,17 +1,45 @@
-## Installation of Habbo Web Application
+### 📦 Step 0 — Install Git (if not already installed)
 
-## Linux Installation
+Run the following command based on your Linux distribution:
 
-1. Download the git using ```git pull https://github.com/chunk082/DevCMS.git```
-2. Extract 
+#### For Debian/Ubuntu:
 
-## Connecting to Emulator
+```sudo apt update```
+```sudo apt install git```
 
+#### For CentOS
 
-## Laravel Sponsors
+```sudo yum install git```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+#### For Fedora 
 
-## License
+```sudo dnf install git```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### For Arch Linux
+
+```sudo pacman -S git```
+
+## 📂 Installing Directly to /var/www (NGINX)
+
+If you want to install DevCMS directly to your NGINX web directory:
+
+### Option A — Without Cloning (Make sure you have git installed):
+# Note if you don't have install installed on VPS run this. 
+1. ```cd /var/www```
+2. ```sudo git init```
+3. ```sudo git remote add origin https://github.com/chunk082/DevCMS.git```
+4. ```sudo git pull origin prod```
+NOTE: Do not use the main branch!
+
+## Setting Up Database 
+
+1. ``` cd /var/www/ ```
+2. ``` nano .env ```
+3. Fill out the blank stuff. If you don't use Discord Ignore it.
+
+# Setting Up Emulator
+
+If you are using MorningStar on the same VPS (No need to to Remote MySQL)
+
+1. 
+
